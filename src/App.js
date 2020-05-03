@@ -16,7 +16,7 @@ class App extends Component {
     persons: [
       { name: "Patrick", age: 29 },
       { name: "Cherry", age: 26 },
-      { name: "Paulala", age: 9 },
+      { name: "Paula", age: 9 },
     ],
   };
 
@@ -30,7 +30,7 @@ class App extends Component {
         persons: [
           { name: "Cherry", age: 26 },
           { name: "Patrick", age: 29 },
-          { name: "Paulala", age: 9 },
+          { name: "Paula", age: 9 },
         ],
       });
     } else {
