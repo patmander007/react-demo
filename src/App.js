@@ -15,24 +15,44 @@ class App extends Component {
 
   previousPersons = null;
 
-  switchNameHandler = () => {
-    console.log(this.previousPersons);
-    if (this.previousPersons == null) {
-      this.previousPersons = cloneDeep(personsState.persons);
-      this.setState({
-        persons: [
-          { name: "Cherry", age: 26 },
-          { name: "Patrick", age: 29 },
-          { name: "Paulalong", age: 9 },
-        ],
-      });
-    } else {
-      let tempPersons = cloneDeep(this.previousPersons);
-      this.previousPersons = cloneDeep(personsState.persons);
-      this.setState({
-        persons: tempPersons,
-      });
-    }
+  // switchNameHandler = () => {
+  //   if (this.previousPersons == null) {
+  //     this.previousPersons = cloneDeep(this.state.persons);
+  //     this.setState({
+  //       persons: [
+  //         { name: "Cherry", age: 26 },
+  //         { name: "Patrick", age: 29 },
+  //         { name: "Paulalong", age: 9 },
+  //       ],
+  //     });
+  //   } else {
+  //     let tempPersons = cloneDeep(this.previousPersons);
+  //     this.previousPersons = cloneDeep(this.state.persons);
+  //     this.setState({
+  //       persons: tempPersons,
+  //     });
+  //   }
+  // };
+
+  //overriding
+  // switchNameHandler = (newName) => {
+  //   this.setState({
+  //     persons: [
+  //       { name: "Cherry", age: 26 },
+  //       { name: newName, age: 29 },
+  //       { name: "Paulalong", age: 9 },
+  //     ],
+  //   });
+  // };
+
+  switchNameHandler = (newName, newAge) => {
+    this.setState({
+      persons: [
+        { name: "Cherry", age: 26 },
+        { name: newName, age: newAge },
+        { name: "Paulalong", age: 9 },
+      ],
+    });
   };
 
   render() {
@@ -40,21 +60,27 @@ class App extends Component {
       <div className="App">
         <h1>Hello World! I am a react project!!</h1>
 
-        <button onClick={this.switchNameHandler}>Switch Name</button>
+        {/* arrow function here is costly and not recommended */}
+        <button onClick={() => this.switchNameHandler("Norman", 25)}>
+          Switch Name
+        </button>
 
         <Person
-          name={personsState.persons[0].name}
-          age={personsState.persons[0].age}
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+        />
+
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          clickMe={this.switchNameHandler.bind(this, "Patricio", 20)}
         >
           My hobbies are sleeping and sleeping again
         </Person>
+
         <Person
-          name={personsState.persons[1].name}
-          age={personsState.persons[1].age}
-        />
-        <Person
-          name={personsState.persons[2].name}
-          age={personsState.persons[2].age}
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
         />
       </div>
     );
